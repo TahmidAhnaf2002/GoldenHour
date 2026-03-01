@@ -3,8 +3,10 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
+import DonorRegistrationPage from './pages/DonorRegistrationPage';
+import FindDonorPage from './pages/FindDonorPage';
+import DashboardPage from './pages/DashboardPage';
 
-// Protected route — redirects to login if not logged in
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" />;
@@ -25,7 +27,23 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          {/* Default redirect */}
+          <Route
+            path="/donor/register"
+            element={
+              <ProtectedRoute>
+                <DonorRegistrationPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/donor/find" element={<FindDonorPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>

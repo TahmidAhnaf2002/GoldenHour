@@ -82,6 +82,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+            
 
             {/* Coming Soon Features */}
             <div style={styles.sectionContainer}>

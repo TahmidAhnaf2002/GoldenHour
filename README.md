@@ -16,6 +16,4 @@ Tech Stack:
 1. Frontend : React.js (via Vite), Plain CSS in JS for styling
 2. Backend: Node.js(runtime environment for Java script), Express.js(Framework for web application)
 3. Database: MongoDB Atlas(Cloud-hosted NoSQL database), Mongoose(MongoDB object modeling for Node.js)
-
-
- Domain/Hosting plan: Frontend(Vercel), Backend(Render)
+4. Domain/Hosting plan: Frontend(Vercel), Backend(Render)

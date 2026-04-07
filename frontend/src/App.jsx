@@ -69,6 +69,8 @@ import CampManagePage from './pages/CampManagePage';
 import BloodBankBoardPage from './pages/BloodBankBoardPage';
 import BloodBankRegisterPage from './pages/BloodBankRegisterPage';
 import BloodBankDashboardPage from './pages/BloodBankDashboardPage';
+import AntivenomFinderPage from './pages/AntivenomFinderPage';
+import AntivenomRegisterPage from './pages/AntivenomRegisterPage';
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -138,7 +140,11 @@ const App = () => {
             path="/bloodbank/dashboard"
             element={<ProtectedRoute><BloodBankDashboardPage /></ProtectedRoute>}
           />
-
+          <Route path="/antivenom" element={<AntivenomFinderPage />} />
+          <Route
+            path="/antivenom/register"
+            element={<ProtectedRoute><AntivenomRegisterPage /></ProtectedRoute>}
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

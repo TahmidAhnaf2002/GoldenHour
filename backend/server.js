@@ -41,7 +41,7 @@ const donorRoutes = require('./routes/donorRoutes');
 const emergencyRoutes = require('./routes/emergencyRoutes');
 const campRoutes = require('./routes/campRoutes');
 const bloodBankRoutes = require('./routes/bloodBankRoutes'); 
-
+const antivenomRoutes = require('./routes/antivenomRoutes');
 
 // Load env variables
 dotenv.config();
@@ -61,6 +61,7 @@ app.use('/api/donors', donorRoutes);
 app.use('/api/emergency', emergencyRoutes);
 app.use('/api/camps', campRoutes); 
 app.use('/api/bloodbanks', bloodBankRoutes); // with other routes
+app.use('/api/antivenom', antivenomRoutes);
 
 // Test route
 app.get('/api', (req, res) => {

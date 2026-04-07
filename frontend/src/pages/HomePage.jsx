@@ -148,7 +148,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-            
+
             {/* Blood Bank Section */}
             <div style={styles.sectionContainer}>
                 <h2 style={styles.sectionTitle}>🏦 Blood Bank Inventory</h2>
@@ -174,6 +174,36 @@ const HomePage = () => {
                             onClick={() => navigate('/bloodbank/dashboard')}
                         >
                             Blood Bank Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Antivenom Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🐍 Snake Bite & Antivenom</h2>
+                <div style={styles.actionRow}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🐍</span>
+                        <h3 style={styles.actionTitle}>Antivenom Finder</h3>
+                        <p style={styles.actionDesc}>
+                            Identify the snake, get first aid instructions, and find the nearest hospital with antivenom.
+                        </p>
+                        <button style={styles.actionBtn} onClick={() => navigate('/antivenom')}>
+                            Find Antivenom
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🏥</span>
+                        <h3 style={styles.actionTitle}>Register Stock</h3>
+                        <p style={styles.actionDesc}>
+                            Hospital staff can register and update their antivenom stock to help emergency cases.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#27AE60' }}
+                            onClick={() => navigate('/antivenom/register')}
+                        >
+                            Register Hospital
                         </button>
                     </div>
                 </div>

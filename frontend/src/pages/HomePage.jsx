@@ -82,7 +82,43 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-            
+
+            {/* Emergency Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🚨 Emergency Blood Requests</h2>
+                <div style={styles.actionRow}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🚨</span>
+                        <h3 style={styles.actionTitle}>Emergency Board</h3>
+                        <p style={styles.actionDesc}>
+                            View all active emergency blood requests and
+                            respond if you are an eligible donor.
+                        </p>
+                        <button
+                            style={styles.actionBtn}
+                            onClick={() => navigate('/emergency')}
+                        >
+                            View Emergency Board
+                        </button>
+                    </div>
+
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>📢</span>
+                        <h3 style={styles.actionTitle}>Request Blood Urgently</h3>
+                        <p style={styles.actionDesc}>
+                            Create an emergency blood request and alert
+                            all matching donors in your area instantly.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#E67E22' }}
+                            onClick={() => navigate('/emergency/create')}
+                        >
+                            Create Emergency Request
+                        </button>
+                    </div>
+                </div>
+            </div>
+
 
             {/* Coming Soon Features */}
             <div style={styles.sectionContainer}>

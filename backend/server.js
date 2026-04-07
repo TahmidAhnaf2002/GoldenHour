@@ -39,6 +39,9 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const donorRoutes = require('./routes/donorRoutes');
 const emergencyRoutes = require('./routes/emergencyRoutes');
+const campRoutes = require('./routes/campRoutes');
+const bloodBankRoutes = require('./routes/bloodBankRoutes'); 
+
 
 // Load env variables
 dotenv.config();
@@ -56,6 +59,8 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/donors', donorRoutes);
 app.use('/api/emergency', emergencyRoutes);
+app.use('/api/camps', campRoutes); 
+app.use('/api/bloodbanks', bloodBankRoutes); // with other routes
 
 // Test route
 app.get('/api', (req, res) => {

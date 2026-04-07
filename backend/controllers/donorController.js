@@ -117,10 +117,46 @@ const updateDonorProfile = async (req, res) => {
   }
 };
 
+// @desc    Log a new donation
+// @route   POST /api/donors/log-donation
+// @access  Private
+const logDonation = async (req, res) => {
+  try {
+    const donor = await Donor.findOne({ user: req.user._id });
+    if (!donor) {
+      return res.status(404).json({ message: 'Donor profile not found' });
+    }
+
+    const { date, hospital, division, district } = req.body;
+
+    donor.donationHistory.push({
+      date,
+      hospital: hospital || '',
+      location: {
+        division: division || '',
+        district: district || '',
+      },
+    });
+
+    donor.totalDonations = donor.donationHistory.length;
+    donor.lastDonationDate = date;
+
+    await donor.save();
+
+    res.json({
+      message: 'Donation logged successfully',
+      totalDonations: donor.totalDonations,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   registerDonor,
   getMyDonorProfile,
   updateAvailability,
   findDonors,
   updateDonorProfile,
+  logDonation,
 };

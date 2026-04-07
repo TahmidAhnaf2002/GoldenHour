@@ -16,7 +16,7 @@ const donorSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Blood type is required'],
       enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-',
-             'A1+', 'A1-', 'A2+', 'A2-', 'Bombay O'],
+        'A1+', 'A1-', 'A2+', 'A2-', 'Bombay O'],
     },
     rhFactor: {
       type: String,
@@ -59,6 +59,17 @@ const donorSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    donationHistory: [
+      {
+        date: { type: Date, required: true },
+        hospital: { type: String, default: '' },
+        location: {
+          division: { type: String, default: '' },
+          district: { type: String, default: '' },
+        },
+        loggedAt: { type: Date, default: Date.now },
+      },
+    ],
   },
   { timestamps: true }
 );

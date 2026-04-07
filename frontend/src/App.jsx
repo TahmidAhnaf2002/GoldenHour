@@ -63,6 +63,12 @@ import FindDonorPage from './pages/FindDonorPage';
 import DashboardPage from './pages/DashboardPage';
 import EmergencyBoardPage from './pages/EmergencyBoardPage';
 import CreateEmergencyPage from './pages/CreateEmergencyPage';
+import CampBoardPage from './pages/CampBoardPage';
+import CreateCampPage from './pages/CreateCampPage';
+import CampManagePage from './pages/CampManagePage';
+import BloodBankBoardPage from './pages/BloodBankBoardPage';
+import BloodBankRegisterPage from './pages/BloodBankRegisterPage';
+import BloodBankDashboardPage from './pages/BloodBankDashboardPage';
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -111,6 +117,28 @@ const App = () => {
             }
           />
           <Route path="*" element={<Navigate to="/login" />} />
+
+
+
+          <Route path="/camps" element={<CampBoardPage />} />
+          <Route
+            path="/camps/create"
+            element={<ProtectedRoute><CreateCampPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/camps/:id/manage"
+            element={<ProtectedRoute><CampManagePage /></ProtectedRoute>}
+          />
+          <Route path="/bloodbanks" element={<BloodBankBoardPage />} />
+          <Route
+            path="/bloodbank/register"
+            element={<ProtectedRoute><BloodBankRegisterPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/bloodbank/dashboard"
+            element={<ProtectedRoute><BloodBankDashboardPage /></ProtectedRoute>}
+          />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

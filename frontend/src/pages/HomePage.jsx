@@ -119,6 +119,66 @@ const HomePage = () => {
                 </div>
             </div>
 
+            {/* Camp Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🩸 Blood Donation Camps</h2>
+                <div style={styles.actionRow}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>📋</span>
+                        <h3 style={styles.actionTitle}>Browse Camps</h3>
+                        <p style={styles.actionDesc}>
+                            Find upcoming blood donation camps near you and register to donate.
+                        </p>
+                        <button style={styles.actionBtn} onClick={() => navigate('/camps')}>
+                            View Camps
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🏕️</span>
+                        <h3 style={styles.actionTitle}>Organize a Camp</h3>
+                        <p style={styles.actionDesc}>
+                            Set up a blood donation camp for your organization, university, or community.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#27AE60' }}
+                            onClick={() => navigate('/camps/create')}
+                        >
+                            Create Camp
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            {/* Blood Bank Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🏦 Blood Bank Inventory</h2>
+                <div style={styles.actionRow}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🏦</span>
+                        <h3 style={styles.actionTitle}>Blood Bank Board</h3>
+                        <p style={styles.actionDesc}>
+                            Check real-time blood stock levels at registered blood banks near you.
+                        </p>
+                        <button style={styles.actionBtn} onClick={() => navigate('/bloodbanks')}>
+                            View Blood Banks
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>⚙️</span>
+                        <h3 style={styles.actionTitle}>Manage Your Bank</h3>
+                        <p style={styles.actionDesc}>
+                            Register your blood bank and update your stock levels in real-time.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#E67E22' }}
+                            onClick={() => navigate('/bloodbank/dashboard')}
+                        >
+                            Blood Bank Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+
 
             {/* Coming Soon Features */}
             <div style={styles.sectionContainer}>

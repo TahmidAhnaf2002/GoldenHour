@@ -71,6 +71,10 @@ import BloodBankRegisterPage from './pages/BloodBankRegisterPage';
 import BloodBankDashboardPage from './pages/BloodBankDashboardPage';
 import AntivenomFinderPage from './pages/AntivenomFinderPage';
 import AntivenomRegisterPage from './pages/AntivenomRegisterPage';
+import MedicineFinderPage from './pages/MedicineFinderPage';
+import MedicineAddPage from './pages/MedicineAddPage';
+import MedicineManagePage from './pages/MedicineManagePage';
+import MedicineReservationsPage from './pages/MedicineReservationsPage';
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -145,6 +149,21 @@ const App = () => {
             path="/antivenom/register"
             element={<ProtectedRoute><AntivenomRegisterPage /></ProtectedRoute>}
           />
+
+          <Route path="/medicines" element={<MedicineFinderPage />} />
+          <Route
+            path="/medicines/add"
+            element={<ProtectedRoute><MedicineAddPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/medicines/manage"
+            element={<ProtectedRoute><MedicineManagePage /></ProtectedRoute>}
+          />
+          <Route
+            path="/medicines/reservations"
+            element={<ProtectedRoute><MedicineReservationsPage /></ProtectedRoute>}
+          />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

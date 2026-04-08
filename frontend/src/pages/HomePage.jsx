@@ -209,6 +209,35 @@ const HomePage = () => {
                 </div>
             </div>
 
+            {/* Medicine Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>💊 Rare Medicine Finder</h2>
+                <div style={styles.actionRow}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🔍</span>
+                        <h3 style={styles.actionTitle}>Find Medicine</h3>
+                        <p style={styles.actionDesc}>
+                            Search for rare and critical medicines across hospitals and pharmacies near you.
+                        </p>
+                        <button style={styles.actionBtn} onClick={() => navigate('/medicines')}>
+                            Search Medicines
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>💊</span>
+                        <h3 style={styles.actionTitle}>List Your Stock</h3>
+                        <p style={styles.actionDesc}>
+                            Hospitals and pharmacies can list rare medicines to help patients find them quickly.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#27AE60' }}
+                            onClick={() => navigate('/medicines/add')}
+                        >
+                            Add Medicine Listing
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             {/* Coming Soon Features */}
             <div style={styles.sectionContainer}>

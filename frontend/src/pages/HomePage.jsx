@@ -80,6 +80,8 @@ const HomePage = () => {
                             Find Donors
                         </button>
                     </div>
+
+
                 </div>
             </div>
 
@@ -234,6 +236,79 @@ const HomePage = () => {
                             onClick={() => navigate('/medicines/add')}
                         >
                             Add Medicine Listing
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🔄</span>
+                        <h3 style={styles.actionTitle}>Medicine Alternatives</h3>
+                        <p style={styles.actionDesc}>
+                            Find generic equivalents and alternate brands when your medicine is out of stock.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#E67E22' }}
+                            onClick={() => navigate('/medicines/alternatives')}
+                        >
+                            Find Alternatives
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Near-Expiry Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>♻️ Near-Expiry Medicine</h2>
+                <div style={styles.actionRow}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>♻️</span>
+                        <h3 style={styles.actionTitle}>Claim Discounted Medicine</h3>
+                        <p style={styles.actionDesc}>
+                            Find medicines nearing expiry at reduced prices — help reduce waste and save money.
+                        </p>
+                        <button style={styles.actionBtn} onClick={() => navigate('/nearexpiry')}>
+                            Browse Listings
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🏥</span>
+                        <h3 style={styles.actionTitle}>Post Near-Expiry Stock</h3>
+                        <p style={styles.actionDesc}>
+                            Hospitals and pharmacies can post medicines nearing expiry to reduce waste.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#27AE60' }}
+                            onClick={() => navigate('/nearexpiry/post')}
+                        >
+                            Post Medicine
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Hospital Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🏥 Hospital Resource Tracker</h2>
+                <div style={styles.actionRow}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🏥</span>
+                        <h3 style={styles.actionTitle}>Hospital Dashboard</h3>
+                        <p style={styles.actionDesc}>
+                            Check real-time bed, ICU, CCU, ventilator and oxygen availability at hospitals near you.
+                        </p>
+                        <button style={styles.actionBtn} onClick={() => navigate('/hospitals')}>
+                            View Hospitals
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>📊</span>
+                        <h3 style={styles.actionTitle}>Manage Your Hospital</h3>
+                        <p style={styles.actionDesc}>
+                            Hospital staff can register and update real-time resource availability data.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#2980b9' }}
+                            onClick={() => navigate('/hospitals/dashboard')}
+                        >
+                            Hospital Dashboard
                         </button>
                     </div>
                 </div>

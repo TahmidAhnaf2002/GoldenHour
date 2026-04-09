@@ -75,6 +75,15 @@ import MedicineFinderPage from './pages/MedicineFinderPage';
 import MedicineAddPage from './pages/MedicineAddPage';
 import MedicineManagePage from './pages/MedicineManagePage';
 import MedicineReservationsPage from './pages/MedicineReservationsPage';
+import NearExpiryBoardPage from './pages/NearExpiryBoardPage';
+import NearExpiryPostPage from './pages/NearExpiryPostPage';
+import NearExpiryManagePage from './pages/NearExpiryManagePage';
+import NearExpiryMyClaimsPage from './pages/NearExpiryMyClaimsPage';
+import MedicineAlternativePage from './pages/MedicineAlternativePage';
+import HospitalBoardPage from './pages/HospitalBoardPage';
+import HospitalRegisterPage from './pages/HospitalRegisterPage';
+import HospitalDashboardPage from './pages/HospitalDashboardPage';
+
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -162,6 +171,33 @@ const App = () => {
           <Route
             path="/medicines/reservations"
             element={<ProtectedRoute><MedicineReservationsPage /></ProtectedRoute>}
+          />
+
+          <Route path="/nearexpiry" element={<NearExpiryBoardPage />} />
+          <Route
+            path="/nearexpiry/post"
+            element={<ProtectedRoute><NearExpiryPostPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/nearexpiry/manage"
+            element={<ProtectedRoute><NearExpiryManagePage /></ProtectedRoute>}
+          />
+          <Route
+            path="/nearexpiry/myclaims"
+            element={<ProtectedRoute><NearExpiryMyClaimsPage /></ProtectedRoute>}
+          />
+
+          <Route path="/medicines/alternatives" element={<MedicineAlternativePage />} />
+
+          <Route path="/hospitals" element={<HospitalBoardPage />} />
+          
+          <Route
+            path="/hospitals/register"
+            element={<ProtectedRoute><HospitalRegisterPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/hospitals/dashboard"
+            element={<ProtectedRoute><HospitalDashboardPage /></ProtectedRoute>}
           />
 
         </Routes>

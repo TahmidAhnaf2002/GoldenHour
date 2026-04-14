@@ -45,6 +45,8 @@ const antivenomRoutes = require('./routes/antivenomRoutes');
 const medicineRoutes = require('./routes/medicineRoutes'); // with other requires
 const nearExpiryRoutes = require('./routes/nearExpiryRoutes');
 const hospitalRoutes = require('./routes/hospitalRoutes');
+const equipmentRoutes = require('./routes/equipmentRoutes');
+
 
 
 // Load env variables
@@ -69,6 +71,8 @@ app.use('/api/antivenom', antivenomRoutes);
 app.use('/api/medicines', medicineRoutes); // with other routes
 app.use('/api/nearexpiry', nearExpiryRoutes);
 app.use('/api/hospitals', hospitalRoutes);
+app.use('/api/equipment', equipmentRoutes);
+
 
 
 // Test route

@@ -313,6 +313,37 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+            {/* Equipment Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>⚕️ Medical Equipment</h2>
+                <div style={styles.actionRow}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>⚕️</span>
+                        <h3 style={styles.actionTitle}>Find Equipment</h3>
+                        <p style={styles.actionDesc}>
+                            Search for oxygen cylinders, dialysis machines, NICU beds and more near you.
+                        </p>
+                        <button style={styles.actionBtn} onClick={() => navigate('/equipment')}>
+                            Find Equipment
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🏪</span>
+                        <h3 style={styles.actionTitle}>List Your Equipment</h3>
+                        <p style={styles.actionDesc}>
+                            Hospitals and vendors can list available medical equipment for booking.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#2980b9' }}
+                            onClick={() => navigate('/equipment/add')}
+                        >
+                            List Equipment
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            
 
             {/* Coming Soon Features */}
             <div style={styles.sectionContainer}>

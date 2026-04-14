@@ -83,6 +83,11 @@ import MedicineAlternativePage from './pages/MedicineAlternativePage';
 import HospitalBoardPage from './pages/HospitalBoardPage';
 import HospitalRegisterPage from './pages/HospitalRegisterPage';
 import HospitalDashboardPage from './pages/HospitalDashboardPage';
+import EquipmentBoardPage from './pages/EquipmentBoardPage';
+import EquipmentAddPage from './pages/EquipmentAddPage';
+import EquipmentManagePage from './pages/EquipmentManagePage';
+import EquipmentBookingsPage from './pages/EquipmentBookingsPage';
+
 
 
 const ProtectedRoute = ({ children }) => {
@@ -190,7 +195,7 @@ const App = () => {
           <Route path="/medicines/alternatives" element={<MedicineAlternativePage />} />
 
           <Route path="/hospitals" element={<HospitalBoardPage />} />
-          
+
           <Route
             path="/hospitals/register"
             element={<ProtectedRoute><HospitalRegisterPage /></ProtectedRoute>}
@@ -199,6 +204,20 @@ const App = () => {
             path="/hospitals/dashboard"
             element={<ProtectedRoute><HospitalDashboardPage /></ProtectedRoute>}
           />
+          <Route path="/equipment" element={<EquipmentBoardPage />} />
+          <Route
+            path="/equipment/add"
+            element={<ProtectedRoute><EquipmentAddPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/equipment/manage"
+            element={<ProtectedRoute><EquipmentManagePage /></ProtectedRoute>}
+          />
+          <Route
+            path="/equipment/bookings"
+            element={<ProtectedRoute><EquipmentBookingsPage /></ProtectedRoute>}
+          />
+          
 
         </Routes>
       </BrowserRouter>

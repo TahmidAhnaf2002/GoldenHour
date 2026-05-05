@@ -87,6 +87,24 @@ import EquipmentBoardPage from './pages/EquipmentBoardPage';
 import EquipmentAddPage from './pages/EquipmentAddPage';
 import EquipmentManagePage from './pages/EquipmentManagePage';
 import EquipmentBookingsPage from './pages/EquipmentBookingsPage';
+import HospitalVerificationPage from './pages/HospitalVerificationPage';
+import ERWaitTimePage from './pages/ERWaitTimePage';
+import ResponderRegisterPage from './pages/ResponderRegisterPage';
+import ResponderDashboardPage from './pages/ResponderDashboardPage';
+import SOSPage from './pages/SOSPage';
+import LendingBoardPage from './pages/LendingBoardPage';
+import LendingListPage from './pages/LendingListPage';
+import LendingDashboardPage from './pages/LendingDashboardPage';
+import FirstAidGuidePage from './pages/FirstAidGuidePage';
+import HealthAlertPage from './pages/HealthAlertPage';
+import AdminPanelPage from './pages/AdminPanelPage';
+import AnalyticsDashboardPage from './pages/AnalyticsDashboardPage';
+import DataQualityPage from './pages/DataQualityPage';
+import OrganDonorPage from './pages/OrganDonorPage';
+import PreparednesScorePage from './pages/PreparednesScorePage';
+import EmergencyIdPage from './pages/EmergencyIdPage';
+import EmergencyIdScanPage from './pages/EmergencyIdScanPage';
+
 
 
 
@@ -217,7 +235,81 @@ const App = () => {
             path="/equipment/bookings"
             element={<ProtectedRoute><EquipmentBookingsPage /></ProtectedRoute>}
           />
-          
+
+
+          <Route
+            path="/hospitals/verification"
+            element={<ProtectedRoute><HospitalVerificationPage /></ProtectedRoute>}
+          />
+
+
+          <Route path="/hospitals/waittime" element={<ERWaitTimePage />} />
+
+          <Route
+            path="/responder/register"
+            element={<ProtectedRoute><ResponderRegisterPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/responder/dashboard"
+            element={<ProtectedRoute><ResponderDashboardPage /></ProtectedRoute>}
+          />
+
+          <Route
+            path="/sos"
+            element={<ProtectedRoute><SOSPage /></ProtectedRoute>}
+          />
+
+          <Route path="/lending" element={<LendingBoardPage />} />
+          <Route
+            path="/lending/list"
+            element={<ProtectedRoute><LendingListPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/lending/dashboard"
+            element={<ProtectedRoute><LendingDashboardPage /></ProtectedRoute>}
+          />
+
+          <Route path="/first-aid" element={<FirstAidGuidePage />} />
+
+          <Route path="/health-alerts" element={<HealthAlertPage />} />
+
+
+
+          <Route
+            path="/admin"
+            element={<ProtectedRoute><AdminPanelPage /></ProtectedRoute>}
+          />
+
+          <Route
+            path="/analytics"
+            element={<ProtectedRoute><AnalyticsDashboardPage /></ProtectedRoute>}
+          />
+
+          <Route
+            path="/data-quality"
+            element={<ProtectedRoute><DataQualityPage /></ProtectedRoute>}
+          />
+
+          <Route
+            path="/organ-donor"
+            element={<ProtectedRoute><OrganDonorPage /></ProtectedRoute>}
+          />
+
+          <Route
+            path="/preparedness"
+            element={<ProtectedRoute><PreparednesScorePage /></ProtectedRoute>}
+          />
+
+          <Route path="/emergency-id" element={<ProtectedRoute><EmergencyIdPage /></ProtectedRoute>} />
+          <Route path="/emergency-id/scan/:emergencyId" element={<EmergencyIdScanPage />} />
+
+
+
+
+
+
+
+
 
         </Routes>
       </BrowserRouter>

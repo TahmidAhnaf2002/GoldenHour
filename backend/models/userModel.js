@@ -20,9 +20,16 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['user', 'admin', 'donor', 'responder', 'hospital'],
+      enum: ['user', 'admin', 'donor', 'responder', 'hospital', 'bloodbank', 'moderator'],
       default: 'user',
     },
+    adminRole: {
+      type: String,
+      enum: ['superadmin', 'hospital_admin', 'bloodbank_admin', 'moderator', null],
+      default: null,
+    },
+    isSuspended:     { type: Boolean, default: false },
+    suspendedReason: { type: String,  default: '' },
     bloodType: {
       type: String,
       enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', ''],
@@ -32,14 +39,12 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Hash password before saving
 userSchema.pre('save', async function () {
   if (!this.isModified('password')) return;
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Method to compare passwords
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };

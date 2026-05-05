@@ -3,27 +3,34 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
+
 const resourceTypes = [
   'General Beds', 'ICU', 'CCU', 'Ventilators',
   'Oxygen Beds', 'General Info',
 ];
 
+
 const HospitalVerificationPage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+
 
   const [hospital, setHospital]     = useState(null);
   const [loading, setLoading]       = useState(true);
   const [activeTab, setActiveTab]   = useState('score');
   const [msg, setMsg]               = useState('');
 
+
   // Document form
   const [docs, setDocs]           = useState([{ docName: '', docNote: '' }]);
   const [docLoading, setDocLoading] = useState(false);
 
+
   const authHeader = { headers: { Authorization: 'Bearer ' + user?.token } };
 
+
   useEffect(() => { fetchHospital(); }, []);
+
 
   const fetchHospital = async () => {
     setLoading(true);
@@ -34,6 +41,7 @@ const HospitalVerificationPage = () => {
     finally { setLoading(false); }
   };
 
+
   const addDocRow    = () => setDocs([...docs, { docName: '', docNote: '' }]);
   const removeDocRow = (i) => setDocs(docs.filter((_, idx) => idx !== i));
   const updateDoc    = (i, field, val) => {
@@ -41,6 +49,7 @@ const HospitalVerificationPage = () => {
     updated[i][field] = val;
     setDocs(updated);
   };
+
 
   const handleDocSubmit = async (e) => {
     e.preventDefault();
@@ -58,11 +67,13 @@ const HospitalVerificationPage = () => {
     } finally { setDocLoading(false); }
   };
 
+
   const getScoreColor = (score) => {
     if (score >= 80) return '#27AE60';
     if (score >= 50) return '#E67E22';
     return '#c0392b';
   };
+
 
   const getScoreLabel = (score) => {
     if (score >= 80) return 'Reliable';
@@ -70,11 +81,14 @@ const HospitalVerificationPage = () => {
     return 'Unreliable';
   };
 
+
   const hoursSinceUpdate = hospital
     ? Math.floor((new Date() - new Date(hospital.lastUpdated)) / (1000 * 60 * 60))
     : 0;
 
+
   if (loading) return <div style={styles.centerMsg}>Loading...</div>;
+
 
   if (!hospital) {
     return (
@@ -96,7 +110,9 @@ const HospitalVerificationPage = () => {
     );
   }
 
+
   const score = hospital.reliabilityScore ?? 100;
+
 
   return (
     <div style={styles.wrapper}>
@@ -110,15 +126,18 @@ const HospitalVerificationPage = () => {
         </div>
       </nav>
 
+
       <div style={styles.container}>
         <div style={styles.header}>
           <h1 style={styles.title}>🏅 {hospital.name}</h1>
           <p style={styles.subtitle}>Verification & Reliability Management</p>
         </div>
 
+
         {msg && (
           <div style={msg.includes('✅') ? styles.successMsg : styles.errorMsg}>{msg}</div>
         )}
+
 
         {/* Score overview */}
         <div style={styles.scoreCard}>
@@ -173,12 +192,14 @@ const HospitalVerificationPage = () => {
           </div>
         </div>
 
+
         {hospital.isFlagged && (
           <div style={styles.flagWarning}>
             🚩 Your hospital is flagged for not updating data in over 48 hours.
             Update your capacity data to restore active status.
           </div>
         )}
+
 
         {/* Score breakdown */}
         <div style={styles.breakdown}>
@@ -204,6 +225,7 @@ const HospitalVerificationPage = () => {
           ))}
         </div>
 
+
         {/* Tabs */}
         <div style={styles.tabs}>
           {['score', 'documents', 'reports'].map((tab) => (
@@ -216,6 +238,7 @@ const HospitalVerificationPage = () => {
             </button>
           ))}
         </div>
+
 
         {/* ── Score Tab ── */}
         {activeTab === 'score' && (
@@ -238,6 +261,7 @@ const HospitalVerificationPage = () => {
           </div>
         )}
 
+
         {/* ── Documents Tab ── */}
         {activeTab === 'documents' && (
           <div style={styles.card}>
@@ -246,6 +270,7 @@ const HospitalVerificationPage = () => {
               Submit your hospital registration certificate, license, and any other
               documents for admin review.
             </p>
+
 
             {hospital.verificationDocuments?.length > 0 && (
               <div style={styles.prevDocs}>
@@ -260,6 +285,7 @@ const HospitalVerificationPage = () => {
                 ))}
               </div>
             )}
+
 
             <form onSubmit={handleDocSubmit}>
               {docs.map((doc, i) => (
@@ -293,6 +319,7 @@ const HospitalVerificationPage = () => {
             </form>
           </div>
         )}
+
 
         {/* ── Reports Tab ── */}
         {activeTab === 'reports' && (
@@ -333,6 +360,7 @@ const HospitalVerificationPage = () => {
     </div>
   );
 };
+
 
 const styles = {
   wrapper: { minHeight: '100vh', backgroundColor: '#FEFDEC', fontFamily: 'sans-serif' },
@@ -459,5 +487,6 @@ const styles = {
     fontSize: '14px', outline: 'none', boxSizing: 'border-box', backgroundColor: '#FEFDEC', color: '#333',
   },
 };
+
 
 export default HospitalVerificationPage;

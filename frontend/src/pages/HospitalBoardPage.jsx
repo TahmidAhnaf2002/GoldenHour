@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext'; // ✅ added
 
 const divisions = [
     'Dhaka', 'Chittagong', 'Rajshahi', 'Khulna',
@@ -34,7 +35,6 @@ const typeColors = {
     NGO: { bg: '#fdecea', color: '#c0392b' },
 };
 
-// Availability color based on percentage
 const getAvailColor = (available, total) => {
     if (total === 0) return { bg: '#f5f5f5', color: '#aaa', bar: '#ddd' };
     const pct = (available / total) * 100;
@@ -59,7 +59,7 @@ const HospitalBoardPage = () => {
     const [hospitals, setHospitals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [viewMode, setViewMode] = useState('list'); // 'list' | 'map'
+    const [viewMode, setViewMode] = useState('list');
     const [filters, setFilters] = useState({
         division: '', district: '', hospitalType: '', resource: '',
     });
@@ -88,7 +88,6 @@ const HospitalBoardPage = () => {
         fetchHospitals(params);
     };
 
-    // Group hospitals by division for map view
     const byDivision = divisions.reduce((acc, div) => {
         acc[div] = hospitals.filter((h) => h.location.division === div);
         return acc;
@@ -268,6 +267,12 @@ const HospitalBoardPage = () => {
 // ── Hospital Card Component ────────────────────────────────────────────────
 const HospitalCard = ({ hospital: h, navigate }) => {
     const [expanded, setExpanded] = useState(false);
+    // ✅ new states added
+    const { user } = useAuth();
+    const [showReport, setShowReport]   = useState(false);
+    const [reportForm, setReportForm]   = useState({ issue: '', resourceType: 'General Info' });
+    const [reportMsg, setReportMsg]     = useState('');
+
     const tc = typeColors[h.hospitalType] || typeColors.Private;
 
     return (
@@ -340,14 +345,23 @@ const HospitalCard = ({ hospital: h, navigate }) => {
                         </a>
                     )}
                 </div>
-                <button
-                    style={cardStyles.detailBtn}
-                    onClick={() => setExpanded(!expanded)}
-                >
-                    {expanded ? '▲ Less' : '▼ Details'}
-                </button>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                    <button
+                        style={cardStyles.detailBtn}
+                        onClick={() => setExpanded(!expanded)}
+                    >
+                        {expanded ? '▲ Less' : '▼ Details'}
+                    </button>
+                    {/* ✅ Report button added */}
+                    {user && (
+                        <button style={cardStyles.reportBtn} onClick={() => setShowReport(!showReport)}>
+                            🚩 Report
+                        </button>
+                    )}
+                </div>
             </div>
 
+            {/* ✅ expanded block — unchanged */}
             {expanded && (
                 <div style={cardStyles.expandedSection}>
                     <div style={cardStyles.expandedGrid}>
@@ -375,6 +389,48 @@ const HospitalCard = ({ hospital: h, navigate }) => {
                                 </div>
                             );
                         })}
+                    </div>
+                </div>
+            )}
+
+            {/* ✅ report message + report form — after expanded block */}
+            {reportMsg && (
+                <div style={{ fontSize: '13px', color: reportMsg.includes('✅') ? '#27AE60' : '#c0392b', marginTop: '8px' }}>
+                    {reportMsg}
+                </div>
+            )}
+
+            {showReport && (
+                <div style={cardStyles.reportSection}>
+                    <div style={cardStyles.reportTitle}>🚩 Report Incorrect Data</div>
+                    <div style={cardStyles.reportRow}>
+                        <select style={cardStyles.reportSelect}
+                            value={reportForm.resourceType}
+                            onChange={(e) => setReportForm({ ...reportForm, resourceType: e.target.value })}>
+                            {['General Beds', 'ICU', 'CCU', 'Ventilators', 'Oxygen Beds', 'General Info'].map((r) => (
+                                <option key={r} value={r}>{r}</option>
+                            ))}
+                        </select>
+                        <input style={cardStyles.reportInput}
+                            type="text" placeholder="Describe the issue..."
+                            value={reportForm.issue}
+                            onChange={(e) => setReportForm({ ...reportForm, issue: e.target.value })} />
+                        <button style={cardStyles.reportSubmitBtn}
+                            onClick={async () => {
+                                if (!reportForm.issue.trim()) return;
+                                try {
+                                    await axios.post(
+                                        '/api/hospitals/' + h._id + '/report', reportForm,
+                                        { headers: { Authorization: 'Bearer ' + user.token } }
+                                    );
+                                    setReportMsg('✅ Report submitted');
+                                    setReportForm({ issue: '', resourceType: 'General Info' });
+                                    setShowReport(false);
+                                    setTimeout(() => setReportMsg(''), 3000);
+                                } catch { setReportMsg('❌ Failed'); }
+                            }}>
+                            Submit
+                        </button>
                     </div>
                 </div>
             )}
@@ -543,6 +599,12 @@ const cardStyles = {
         border: '1.5px solid #FA7070', borderRadius: '8px', fontWeight: 'bold',
         fontSize: '12px', cursor: 'pointer',
     },
+    // ✅ new styles added
+    reportBtn: {
+        padding: '7px 12px', backgroundColor: '#FEF9E7', color: '#E67E22',
+        border: '1.5px solid #E67E22', borderRadius: '8px',
+        fontWeight: 'bold', fontSize: '12px', cursor: 'pointer',
+    },
     expandedSection: {
         marginTop: '14px', paddingTop: '14px', borderTop: '1px solid #f0f0f0',
     },
@@ -556,6 +618,24 @@ const cardStyles = {
     },
     expandedBarFill: { height: '100%', borderRadius: '4px', transition: 'width 0.3s' },
     expandedVal: { fontSize: '12px', fontWeight: '600', whiteSpace: 'nowrap' },
+    reportSection: {
+        marginTop: '12px', padding: '14px', backgroundColor: '#FEF9E7',
+        borderRadius: '10px', border: '1px solid #fceab0',
+    },
+    reportTitle:     { fontSize: '13px', fontWeight: 'bold', color: '#E67E22', marginBottom: '10px' },
+    reportRow:       { display: 'flex', gap: '8px', flexWrap: 'wrap' },
+    reportSelect: {
+        padding: '8px 10px', borderRadius: '8px', border: '1.5px solid #fceab0',
+        fontSize: '12px', backgroundColor: '#fff', color: '#333', outline: 'none',
+    },
+    reportInput: {
+        flex: 1, padding: '8px 12px', borderRadius: '8px', border: '1.5px solid #fceab0',
+        fontSize: '13px', outline: 'none', backgroundColor: '#fff',
+    },
+    reportSubmitBtn: {
+        padding: '8px 16px', backgroundColor: '#E67E22', color: '#fff',
+        border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', fontSize: '12px',
+    },
 };
 
 export default HospitalBoardPage;

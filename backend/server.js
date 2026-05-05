@@ -46,6 +46,18 @@ const medicineRoutes = require('./routes/medicineRoutes'); // with other require
 const nearExpiryRoutes = require('./routes/nearExpiryRoutes');
 const hospitalRoutes = require('./routes/hospitalRoutes');
 const equipmentRoutes = require('./routes/equipmentRoutes');
+const responderRoutes = require('./routes/responderRoutes');
+const sosRoutes = require('./routes/sosRoutes');
+const lendingRoutes = require('./routes/lendingRoutes');
+const alertRoutes = require('./routes/alertRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
+const dataQualityRoutes = require('./routes/dataQualityRoutes');
+const { startScheduledJobs } = require('./services/dataQualityService');
+const organDonorRoutes = require('./routes/organDonorRoutes');
+const preparednessRoutes = require('./routes/preparednessRoutes');
+const emergencyIdRoutes = require('./routes/emergencyIdRoutes');
+
 
 
 
@@ -54,12 +66,14 @@ dotenv.config();
 
 // Connect to database
 connectDB();
+startScheduledJobs();
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -72,6 +86,16 @@ app.use('/api/medicines', medicineRoutes); // with other routes
 app.use('/api/nearexpiry', nearExpiryRoutes);
 app.use('/api/hospitals', hospitalRoutes);
 app.use('/api/equipment', equipmentRoutes);
+app.use('/api/responders', responderRoutes);
+app.use('/api/sos', sosRoutes);
+app.use('/api/lending', lendingRoutes);
+app.use('/api/alerts', alertRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/quality', dataQualityRoutes);
+app.use('/api/organ-donors', organDonorRoutes);
+app.use('/api/preparedness', preparednessRoutes);
+app.use('/api/emergency-id', emergencyIdRoutes);
 
 
 

@@ -285,9 +285,10 @@ const HomePage = () => {
             </div>
 
             {/* Hospital Section */}
+            {/* Hospital Section */}
             <div style={styles.sectionContainer}>
                 <h2 style={styles.sectionTitle}>🏥 Hospital Resource Tracker</h2>
-                <div style={styles.actionRow}>
+                <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr 1fr 1fr' }}>
                     <div style={styles.actionCard}>
                         <span style={styles.actionIcon}>🏥</span>
                         <h3 style={styles.actionTitle}>Hospital Dashboard</h3>
@@ -311,8 +312,215 @@ const HomePage = () => {
                             Hospital Dashboard
                         </button>
                     </div>
+                    {/* ✅ Verification card goes HERE, inside the same row */}
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🏅</span>
+                        <h3 style={styles.actionTitle}>Hospital Verification</h3>
+                        <p style={styles.actionDesc}>
+                            Submit documents, track your reliability score, and manage user reports.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#8e44ad' }}
+                            onClick={() => navigate('/hospitals/verification')}
+                        >
+                            Manage Verification
+                        </button>
+                    </div>
+
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🚨</span>
+                        <h3 style={styles.actionTitle}>ER Wait Times</h3>
+                        <p style={styles.actionDesc}>
+                            Compare emergency department wait times at hospitals near you in real-time.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#c0392b' }}
+                            onClick={() => navigate('/hospitals/waittime')}
+                        >
+                            View ER Wait Times
+                        </button>
+                    </div>
+
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🛡️</span>
+                        <h3 style={styles.actionTitle}>Data Quality</h3>
+                        <p style={styles.actionDesc}>
+                            Monitor hospital data freshness, reliability scores, and automated enforcement status.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#2c3e50' }}
+                            onClick={() => navigate('/data-quality')}
+                        >
+                            View Data Quality
+                        </button>
+                    </div>
                 </div>
             </div>
+
+            {/* First Responder Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🚑 Community First Responders</h2>
+                <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr 1fr' }}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🚑</span>
+                        <h3 style={styles.actionTitle}>Register as Responder</h3>
+                        <p style={styles.actionDesc}>
+                            Join the first responder network as a trained volunteer or medical professional.
+                        </p>
+                        <button style={styles.actionBtn} onClick={() => navigate('/responder/register')}>
+                            Register as Responder
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>⚙️</span>
+                        <h3 style={styles.actionTitle}>My Responder Profile</h3>
+                        <p style={styles.actionDesc}>
+                            Manage your availability, response radius, skills, and verification documents.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#27AE60' }}
+                            onClick={() => navigate('/responder/dashboard')}
+                        >
+                            Responder Dashboard
+                        </button>
+                    </div>
+
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🆘</span>
+                        <h3 style={styles.actionTitle}>Emergency SOS</h3>
+                        <p style={styles.actionDesc}>
+                            Send an instant SOS alert to all nearby first responders in your area.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#c0392b' }}
+                            onClick={() => navigate('/sos')}
+                        >
+                            Send SOS Alert
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Community Lending Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🤝 Community Lending Library</h2>
+                <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr 1fr 1fr' }}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🔍</span>
+                        <h3 style={styles.actionTitle}>Borrow Equipment</h3>
+                        <p style={styles.actionDesc}>
+                            Browse wheelchairs, oxygen cylinders, hospital beds and more from community members.
+                        </p>
+                        <button style={styles.actionBtn} onClick={() => navigate('/lending')}>
+                            Browse Equipment
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🤝</span>
+                        <h3 style={styles.actionTitle}>Lend Equipment</h3>
+                        <p style={styles.actionDesc}>
+                            List your unused medical equipment and help someone in your community recover.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#27AE60' }}
+                            onClick={() => navigate('/lending/list')}
+                        >
+                            List Equipment
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>📦</span>
+                        <h3 style={styles.actionTitle}>My Lending</h3>
+                        <p style={styles.actionDesc}>
+                            Manage your listings, approve borrow requests, and confirm equipment returns.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#8e44ad' }}
+                            onClick={() => navigate('/lending/dashboard')}
+                        >
+                            My Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* First Aid Guide Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🩺 Emergency First Aid Guide</h2>
+                <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr' }}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🩺</span>
+                        <h3 style={styles.actionTitle}>First Aid & Poison Guide</h3>
+                        <p style={styles.actionDesc}>
+                            Step-by-step emergency guides for snake bites, heart attacks, burns, choking and more.
+                            Available in English and Bangla. Works offline.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#27AE60' }}
+                            onClick={() => navigate('/first-aid')}
+                        >
+                            Open First Aid Guide
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Health Alerts Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🦠 Community Health Alerts</h2>
+                <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr 1fr' }}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>📢</span>
+                        <h3 style={styles.actionTitle}>Health Alerts & Outbreaks</h3>
+                        <p style={styles.actionDesc}>
+                            Stay informed about disease outbreaks, health advisories, and vaccination camps
+                            in your area.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#8e44ad' }}
+                            onClick={() => navigate('/health-alerts')}
+                        >
+                            View Health Alerts
+                        </button>
+                    </div>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🦠</span>
+                        <h3 style={styles.actionTitle}>Report an Outbreak</h3>
+                        <p style={styles.actionDesc}>
+                            Spotted a disease outbreak in your community? Report it so others can stay safe.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#c0392b' }}
+                            onClick={() => navigate('/health-alerts')}
+                        >
+                            Report Outbreak
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            {/* Analytics Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>📊 Emergency Analytics</h2>
+                <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr' }}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>📊</span>
+                        <h3 style={styles.actionTitle}>Analytics Dashboard</h3>
+                        <p style={styles.actionDesc}>
+                            View emergency patterns, blood type trends, hospital capacity charts,
+                            outbreak heatmaps, and export reports as CSV or PDF.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#2c3e50' }}
+                            onClick={() => navigate('/analytics')}
+                        >
+                            Open Analytics
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             {/* Equipment Section */}
             <div style={styles.sectionContainer}>
                 <h2 style={styles.sectionTitle}>⚕️ Medical Equipment</h2>
@@ -343,22 +551,92 @@ const HomePage = () => {
                 </div>
             </div>
 
-            
 
-            {/* Coming Soon Features */}
+
+            {/* Organ Donor Section */}
             <div style={styles.sectionContainer}>
-                <h2 style={styles.sectionTitle}>🚀 More Features Coming Soon</h2>
-                <div style={styles.grid}>
-                    {comingSoon.map((f, i) => (
-                        <div key={i} style={styles.card}>
-                            <span style={styles.cardIcon}>{f.icon}</span>
-                            <h3 style={styles.cardTitle}>{f.title}</h3>
-                            <p style={styles.cardDesc}>{f.desc}</p>
-                            <button style={styles.cardBtn}>Coming Soon</button>
-                        </div>
-                    ))}
+                <h2 style={styles.sectionTitle}>🫀 Organ Donor Registry</h2>
+                <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr' }}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🫀</span>
+                        <h3 style={styles.actionTitle}>Organ Donor Registry</h3>
+                        <p style={styles.actionDesc}>
+                            Pledge your organs to save lives. Get your digital donor card, record
+                            family consent, and manage your pledge anytime.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#c0392b' }}
+                            onClick={() => navigate('/organ-donor')}
+                        >
+                            View Organ Registry
+                        </button>
+                    </div>
                 </div>
             </div>
+
+            {/* Preparedness Score Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🏅 Emergency Preparedness Score</h2>
+                <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr' }}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🏅</span>
+                        <h3 style={styles.actionTitle}>Your Preparedness Score</h3>
+                        <p style={styles.actionDesc}>
+                            Earn points for every preparedness action you take — donate blood, register as
+                            a responder, pledge organs, and more. Climb the leaderboard and earn your tier badge.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#f1c40f', color: '#333' }}
+                            onClick={() => navigate('/preparedness')}
+                        >
+                            🏅 View My Score
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Emergency ID Section */}
+            <div style={styles.sectionContainer}>
+                <h2 style={styles.sectionTitle}>🆔 Personal Medical Emergency ID</h2>
+                <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr' }}>
+                    <div style={styles.actionCard}>
+                        <span style={styles.actionIcon}>🆔</span>
+                        <h3 style={styles.actionTitle}>My Emergency ID Card</h3>
+                        <p style={styles.actionDesc}>
+                            Generate a QR code with your blood type, allergies, medications, and emergency contacts.
+                            First responders can scan it instantly — no login needed.
+                        </p>
+                        <button
+                            style={{ ...styles.actionBtn, backgroundColor: '#c0392b' }}
+                            onClick={() => navigate('/emergency-id')}
+                        >
+                            Create My Emergency ID
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {user?.role === 'admin' && (
+                <div style={styles.sectionContainer}>
+                    <h2 style={styles.sectionTitle}>🛡️ Admin Panel</h2>
+                    <div style={{ ...styles.actionRow, gridTemplateColumns: '1fr' }}>
+                        <div style={styles.actionCard}>
+                            <span style={styles.actionIcon}>🛡️</span>
+                            <h3 style={styles.actionTitle}>Admin Control Panel</h3>
+                            <p style={styles.actionDesc}>
+                                Manage users, verify hospitals and responders, moderate health alerts, and resolve disputes.
+                            </p>
+                            <button
+                                style={{ ...styles.actionBtn, backgroundColor: '#2c3e50' }}
+                                onClick={() => navigate('/admin')}
+                            >
+                                Open Admin Panel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };
